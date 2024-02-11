@@ -1,0 +1,13 @@
+# Target labels
+ PioasmBuild
+# Source files and their labels
+/Users/grubowski/Documents/Important Folders/School/OSU School Work/Winter 2023 Quarter/pico/pico-project-generator/new_gps/build/pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/PioasmBuild
+/Users/grubowski/Documents/Important Folders/School/OSU School Work/Winter 2023 Quarter/pico/pico-project-generator/new_gps/build/pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/PioasmBuild.rule
+/Users/grubowski/Documents/Important Folders/School/OSU School Work/Winter 2023 Quarter/pico/pico-project-generator/new_gps/build/pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/PioasmBuild-complete.rule
+/Users/grubowski/Documents/Important Folders/School/OSU School Work/Winter 2023 Quarter/pico/pico-project-generator/new_gps/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule
+/Users/grubowski/Documents/Important Folders/School/OSU School Work/Winter 2023 Quarter/pico/pico-project-generator/new_gps/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule
+/Users/grubowski/Documents/Important Folders/School/OSU School Work/Winter 2023 Quarter/pico/pico-project-generator/new_gps/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule
+/Users/grubowski/Documents/Important Folders/School/OSU School Work/Winter 2023 Quarter/pico/pico-project-generator/new_gps/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule
+/Users/grubowski/Documents/Important Folders/School/OSU School Work/Winter 2023 Quarter/pico/pico-project-generator/new_gps/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule
+/Users/grubowski/Documents/Important Folders/School/OSU School Work/Winter 2023 Quarter/pico/pico-project-generator/new_gps/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule
+/Users/grubowski/Documents/Important Folders/School/OSU School Work/Winter 2023 Quarter/pico/pico-project-generator/new_gps/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule

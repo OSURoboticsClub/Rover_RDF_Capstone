@@ -1,0 +1,3 @@
+/Users/grubowski/Documents/Important Folders/School/OSU School Work/Winter 2023 Quarter/pico/pico-project-generator/new_gps/build/pioasm/CMakeFiles/pioasm.dir
+/Users/grubowski/Documents/Important Folders/School/OSU School Work/Winter 2023 Quarter/pico/pico-project-generator/new_gps/build/pioasm/CMakeFiles/edit_cache.dir
+/Users/grubowski/Documents/Important Folders/School/OSU School Work/Winter 2023 Quarter/pico/pico-project-generator/new_gps/build/pioasm/CMakeFiles/rebuild_cache.dir
