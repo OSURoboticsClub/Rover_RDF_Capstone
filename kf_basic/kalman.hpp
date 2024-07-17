@@ -11,13 +11,19 @@ using namespace Eigen;
 class KF{
     public:
         KF(int size_x, int size_z, int size_u); //constructor that takes in desired system dimensions as parameters
+        KF(int size_x, int size_z, int size_u, MatrixXf B, MatrixXf u); //constructor that allows for intialization of control inputs
         KF(); //empty constructor
         ~KF();
 
         void update(MatrixXf z); //takes in new measurement and updates state 
         void predict();
-        void print_mtxf_arduino(const MatrixXf& K);
-        void print_mtxf_cpp(const MatrixXf& K);
+        void print_mtxf_arduino(MatrixXf& K);
+        void print_matrices(); // prints members of KF class
+        void init(MatrixXf x, MatrixXf R, MatrixXf P, MatrixXf H, MatrixXf Q);
+
+        //setters
+        void set_K(MatrixXf copy); //for circumstances where you'd want to hardcode the kalman gain to reduce computational complexity
+
 
     protected:
         //system dimensions
@@ -34,7 +40,7 @@ class KF{
         //P: current state covariance matrix <x rows, x cols>. Any call to the update or predict updates this variable
         //z: last measurement used in update
         //R: measurement noise matrix <z rows, z cols>
-        //F: state transition matrix
+        //F: state transition matrix (Process Model)
         //Q: process noise matrix
         //H: Measurement function <z rows, x cols>
         //y: Residual of update

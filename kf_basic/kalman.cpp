@@ -32,33 +32,61 @@ KF::KF(){}
 
 KF::~KF(){}
 
-void KF::update(const MatrixXf z){
+//setters
+void KF::set_K(MatrixXf c)
+{
+    this->K = c;
+}
+
+void KF::init(MatrixXf x, MatrixXf R, MatrixXf P, MatrixXf H, MatrixXf Q)
+{
+    //set an initial value for the state vector
+    this->x = x;
+
+    //initialize measurement noise
+    this->R = R;
+
+    //initialize process covariance
+    this->P = P;
+
+    //initialize measurement function
+    this->H = H;
+
+    //initialize processes noise
+    this->Q = Q;
+}
+
+void KF::update(MatrixXf z){
     //calculate the residual
-    y = z - H * x;
+    this->y = z - H * x;
 
     //S = HPH' + R -> Update the system uncertainty
-    S = H*P*H.transpose() + R;
+    this->S = H*P*H.transpose() + R;
 
     //get inverse of S for kalman gain
-    SI = S.inverse();
+    this->SI = S.inverse();
 
     //calculate the kalman gain
-    K = P*H.transpose()*SI;
+    this->K = P*H.transpose()*SI;
 
     //calculate new x
-    x = x + K*y;
+    this->x = x + K*y;
 
     //P = (I-KH)P(I-KH)' + KRK' <- this is more numerically stable than just I - (KH)P
-    (I-K*H)*P*(I-K*H).transpose() + K*R*K.transpose();
+    this->P = (I-K*H)*P*(I-K*H).transpose() + K*R*K.transpose();
 
 }
 
 void KF::predict(){
+    Serial.println();
+    Serial.println("Predict");
     //calculate the prior x
-    x = F*x + B*u;
+    this->x = this->F*this->x + this->B*this->u;
+    print_mtxf_arduino(this->x);
 
     //calculate the prior P
-    P = F*P*F.transpose() + Q;
+    this->P = this->F*this->P*this->F.transpose() + this->Q;
+    print_mtxf_arduino(this->P);
 }
 
 
@@ -66,7 +94,7 @@ void KF::predict(){
 // PRINT MATRIX (float type)
 // By: randomvibe
 //-----------------------------
-void KF::print_mtxf_arduino(const Eigen::MatrixXf& X)  
+void KF::print_mtxf_arduino(Eigen::MatrixXf& X)  
 {
    int i, j, nrow, ncol;
    nrow = X.rows();
@@ -86,3 +114,31 @@ void KF::print_mtxf_arduino(const Eigen::MatrixXf& X)
    Serial.println();
 }
 
+void KF::print_matrices()
+{
+    Serial.println("Current state vector (x):");
+    print_mtxf_arduino(this->x);
+    Serial.println("Last measurement used (z):");
+    print_mtxf_arduino(this->z);
+    Serial.println("Residual (y):");
+    print_mtxf_arduino(this->y);
+    Serial.println("State Covariance (P):");
+    print_mtxf_arduino(this->P);
+    Serial.println("Process Noise (Q):");
+    print_mtxf_arduino(this->Q);
+    Serial.println("State Transition Matrix (F):");
+    print_mtxf_arduino(this->F);
+    Serial.println("Measurement Noise (R):");
+    print_mtxf_arduino(this->R);
+    Serial.println("Measurement Matrix (H):");
+    print_mtxf_arduino(this->H);
+    Serial.println("Kalman Gain (K):");
+    print_mtxf_arduino(this->K);
+    Serial.println("System uncertainty and inverse (S):");
+    print_mtxf_arduino(this->S);
+    print_mtxf_arduino(this->SI);
+    Serial.println("Control input vector (u):");
+    print_mtxf_arduino(this->u);
+    Serial.println("Control transition matrix (B):");
+    print_mtxf_arduino(this->B);
+}
