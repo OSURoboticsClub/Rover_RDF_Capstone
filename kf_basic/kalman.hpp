@@ -19,7 +19,7 @@ class KF{
         void predict();
         void print_mtxf_arduino(MatrixXf& K);
         void print_matrices(); // prints members of KF class
-        void init(MatrixXf x, MatrixXf R, MatrixXf P, MatrixXf H, MatrixXf Q);
+        void init(MatrixXf x, MatrixXf R, MatrixXf P, MatrixXf H, MatrixXf Q, MatrixXf F);
 
         //setters
         void set_K(MatrixXf copy); //for circumstances where you'd want to hardcode the kalman gain to reduce computational complexity

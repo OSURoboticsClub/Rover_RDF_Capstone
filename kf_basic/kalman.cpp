@@ -38,7 +38,7 @@ void KF::set_K(MatrixXf c)
     this->K = c;
 }
 
-void KF::init(MatrixXf x, MatrixXf R, MatrixXf P, MatrixXf H, MatrixXf Q)
+void KF::init(MatrixXf x, MatrixXf R, MatrixXf P, MatrixXf H, MatrixXf Q, MatrixXf F)
 {
     //set an initial value for the state vector
     this->x = x;
@@ -54,6 +54,9 @@ void KF::init(MatrixXf x, MatrixXf R, MatrixXf P, MatrixXf H, MatrixXf Q)
 
     //initialize processes noise
     this->Q = Q;
+
+    //initialize process matrix/system matrix
+    this->F = F;
 }
 
 void KF::update(MatrixXf z){
@@ -75,6 +78,11 @@ void KF::update(MatrixXf z){
     //P = (I-KH)P(I-KH)' + KRK' <- this is more numerically stable than just I - (KH)P
     this->P = (I-K*H)*P*(I-K*H).transpose() + K*R*K.transpose();
 
+    Serial.println("Updated State:");
+    print_mtxf_arduino(this->x);
+    Serial.println("Updated Covariance:");
+    print_mtxf_arduino(this->P); 
+
 }
 
 void KF::predict(){
@@ -82,11 +90,11 @@ void KF::predict(){
     Serial.println("Predict");
     //calculate the prior x
     this->x = this->F*this->x + this->B*this->u;
-    print_mtxf_arduino(this->x);
+    //print_mtxf_arduino(this->x);
 
     //calculate the prior P
     this->P = this->F*this->P*this->F.transpose() + this->Q;
-    print_mtxf_arduino(this->P);
+    //print_mtxf_arduino(this->P);
 }
 
 
